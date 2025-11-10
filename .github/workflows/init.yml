@@ -26,7 +26,14 @@ jobs:
           GH_TOKEN: ${{ secrets.ADMIN_PAT }}
           REPO: ${{ github.repository }}
         run: |
-          echo "Setting Pages source to GitHub Actions..."
+          echo "Creating Pages ..."
+          gh api -X POST \
+            -H "Accept: application/vnd.github+json" \
+            /repos/$REPO/pages \
+            -f source.branch=gh-pages \
+            -f source.path=/
+
+          echo "Setting Pages build type to GitHub Actions..."
           gh api -X POST \
             -H "Accept: application/vnd.github+json" \
             /repos/$REPO/settings/pages/build_type \
