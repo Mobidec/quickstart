@@ -17,7 +17,7 @@ env:
 jobs:
   ruff_guardian:
     runs-on: ubuntu-latest
-    if: ${{ vars.INITED }} == 'true'
+    if: ${{ vars.INITED == 'true' }}
     steps:
       - name: Clone the repository
         uses: actions/checkout@v3
@@ -83,7 +83,7 @@ jobs:
   
   check-version:
     runs-on: ubuntu-latest
-    if: ${{ github.ref == 'refs/heads/main' && vars.PUBLISH_TO_PYPI == 'true' }}
+    if: ${{ vars.INITED == 'true' && github.ref == 'refs/heads/main' && vars.PUBLISH_TO_PYPI == 'true' }}
     steps:
       - name: Clone the repository
         uses: actions/checkout@v3
