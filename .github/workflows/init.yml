@@ -23,7 +23,7 @@ jobs:
     steps:
       - name: Configure GitHub Pages
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.ADMIN_PAT }}
           REPO: ${{ github.repository }}
         run: |
           echo "Setting Pages source to GitHub Actions..."
@@ -38,7 +38,7 @@ jobs:
     steps:
       - name: Set up variables
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.ADMIN_PAT }}
           REPO: ${{ github.repository }}
         run: |
           # Define variable name and value
