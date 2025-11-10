@@ -29,7 +29,7 @@ jobs:
           echo "Setting Pages source to GitHub Actions..."
           gh api -X POST \
             -H "Accept: application/vnd.github+json" \
-            /repos/$REPO/pages \
+            /repos/$REPO/settings/pages/build_type \
             -f source=workflow
   
   set-repo-var:
@@ -45,27 +45,14 @@ jobs:
           VAR_NAME="INITED"
           VAR_VALUE="true"
 
-          # Check if variable exists
-          EXIST=$(gh api repos/$REPO/actions/variables/$VAR_NAME -H "Authorization: token $GH_TOKEN" || echo "notfound")
-
-          if [[ "$EXIST" == "notfound" ]]; then
-            echo "Creating variable $VAR_NAME..."
-            gh api \
-              -X POST \
-              -H "Authorization: token $GH_TOKEN" \
-              -H "Accept: application/vnd.github+json" \
-              /repos/$REPO/actions/variables \
-              -f name="$VAR_NAME" \
-              -f value="$VAR_VALUE"
-          else
-            echo "Updating variable $VAR_NAME..."
-            gh api \
-              -X PATCH \
-              -H "Authorization: token $GH_TOKEN" \
-              -H "Accept: application/vnd.github+json" \
-              /repos/$REPO/actions/variables/$VAR_NAME \
-              -f value="$VAR_VALUE"
-          fi
+          echo "Creating variable $VAR_NAME..."
+          gh api \
+            -X POST \
+            -H "Authorization: token $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            /repos/$REPO/actions/variables \
+            -f name="$VAR_NAME" \
+            -f value="$VAR_VALUE"
   
   rename-and-push:
     runs-on: ubuntu-latest
