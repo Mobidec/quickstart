@@ -14,7 +14,7 @@ env:
 jobs:
   build-pages:
     runs-on: ubuntu-latest
-    if: github.event.repository.fork == false
+    if: ${{ vars.INITED }} == 'true'
     permissions:
       contents: read
       pages: write
@@ -34,6 +34,12 @@ jobs:
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
         with:
+          path: ./public
+      
+      - name: Upload Sphinx build logs
+        uses: actions/upload-artifact@v4
+        with:
+          name: sphinx-build-logs
           path: ./public
 
   
