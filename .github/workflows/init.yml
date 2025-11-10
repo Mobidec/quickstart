@@ -11,6 +11,11 @@ on:
 env:
   REPO_NAME: ${{ github.event.repository.name }}
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   setup-pages:
     runs-on: ubuntu-latest
