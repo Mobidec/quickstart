@@ -59,31 +59,34 @@ jobs:
     needs: [setup-pages, set-repo-var]
     steps:
       - name: Clone the repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           persist-credentials: true
-          fetch-depth: 0 
+          fetch-depth: 0
+          clean: true
+
       - name: Rename files
         run: |
           echo "Renaming files to use repository name ..."
           find . -type f -print0 | xargs -0 -I {} sed -i "s/quickstart/$REPO_NAME/g" {}
           mv src/quickstart src/$REPO_NAME
-          sudo apt-get install tree 1> /dev/null
-          tree
-      - name: Delete this file
+
+      - name: Delete init workflow file
         run: |
           rm -f .github/workflows/init.yml
+
       - name: Commit and push changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
+          git status
           git diff
 
           if ! git diff-index --quiet HEAD --; then
             git add .
-            git commit --amend --no-edit
-            git push --force
+            git commit -m "Rename quickstart to $REPO_NAME"
+            git push origin HEAD:${GITHUB_REF_NAME}
           else
             echo "No changes to commit."
           fi
