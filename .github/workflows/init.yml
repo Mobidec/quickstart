@@ -64,6 +64,15 @@ jobs:
           fetch-depth: 0
           clean: true
 
+      - name: Fix possible index corruption
+        run: |
+          rm -f .git/index
+          git reset
+
+      - name : Create a new branch
+        run: |
+          git checkout -b init-temp
+
       - name: Rename files
         run: |
           echo "Renaming files to use repository name ..."
@@ -73,12 +82,6 @@ jobs:
       - name: Delete init workflow file
         run: |
           rm -f .github/workflows/init.yml
-      
-      - name: Fix possible index corruption
-        run: |
-          rm -f .git/index
-          git reset
-      
 
       - name: Commit on a new branch
         run: |
@@ -89,7 +92,6 @@ jobs:
           git status
 
           echo "Pushing changes to remote repository ..."
-          git checkout -b init-temp
           git add .
           git commit -m "Initialize repository"
           git push origin init-temp --force
