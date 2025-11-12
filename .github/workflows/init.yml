@@ -91,9 +91,13 @@ jobs:
           echo "Checking for changes to commit ..."
           git status
 
-          echo "Pushing changes to remote repository ..."
-          git commit -m "Initialize repository"
-          git push origin init-temp --force
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            echo "Pushing changes to remote repository ..."
+            git commit -m "Initialize repository"
+            git push origin init-temp --force
+          fi
 
       - name: Create pull request
         uses: peter-evans/create-pull-request@v5
