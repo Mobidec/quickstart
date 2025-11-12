@@ -98,19 +98,3 @@ jobs:
             git commit -m "Initialize repository"
             git push origin init-temp --force
           fi
-
-      - name: Create pull request
-        uses: peter-evans/create-pull-request@v5
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "Initialize repository"
-          branch: init-temp
-          base: main
-          title: "Initialize Repository"
-          body: "This PR initializes the repository automatically"
-          draft: false
-
-      - name: Auto merge PR
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        uses: pascalgn/automerge-action@v0.15.4
