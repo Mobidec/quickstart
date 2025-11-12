@@ -95,6 +95,11 @@ jobs:
             echo "No changes to commit."
           fi
       
+      - name: Setup develop branch
+        run: |
+          git checkout -b develop
+          git push -u origin develop
+      
       - name: Rerun other workflows
         env:
           GH_TOKEN: ${{ secrets.ADMIN_PAT }}
