@@ -78,6 +78,10 @@ jobs:
         run: |
           rm -f .github/workflows/init.yml
 
+      - name: Rebuild git index safely
+        run: |
+          git reset --mixed
+
       - name: Commit on a new branch
         run: |
           git config user.name "github-actions[bot]"
