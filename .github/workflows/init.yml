@@ -55,8 +55,6 @@ jobs:
   rename-and-push:
     runs-on: ubuntu-latest
     needs: [setup-pages, set-repo-var]
-    env:
-      GITHUB_TOKEN: ${{ secrets.ADMIN_PAT }}
     steps:
       - name: Clone the repository
         uses: actions/checkout@v4
@@ -82,6 +80,7 @@ jobs:
 
       - name: Commit and push changes
         run: |
+          echo "${{ secrets.ADMIN_PAT }}" | gh auth login --with-token
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
@@ -92,7 +91,7 @@ jobs:
             echo "Pushing changes to remote repository ..."
             git add .
             git commit -m "Initialization: Rename files and configure repository"
-            git push --force
+            git push origin main
           else
             echo "No changes to commit."
           fi
