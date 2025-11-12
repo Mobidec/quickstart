@@ -80,7 +80,8 @@ jobs:
 
       - name: Rebuild git index safely
         run: |
-          git reset --mixed
+          rm -rf .git/index
+          git add .
 
       - name: Commit on a new branch
         run: |
@@ -91,7 +92,6 @@ jobs:
           git status
 
           echo "Pushing changes to remote repository ..."
-          git add .
           git commit -m "Initialize repository"
           git push origin init-temp --force
 
