@@ -80,7 +80,6 @@ jobs:
 
       - name: Commit and push changes
         run: |
-          echo "${{ secrets.ADMIN_PAT }}" | gh auth login --with-token
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
@@ -91,7 +90,7 @@ jobs:
             echo "Pushing changes to remote repository ..."
             git add .
             git commit -m "Initialization: Rename files and configure repository"
-            git push origin main
+            git push https://x-access-token:${{ secrets.ADMIN_PAT }}@github.com/${{ github.repository }} HEAD:main
           else
             echo "No changes to commit."
           fi
