@@ -13,7 +13,6 @@ env:
 
 permissions:
   contents: write
-  pull-requests: write
 
 jobs:
   setup-pages:
@@ -64,10 +63,6 @@ jobs:
           fetch-depth: 0
           clean: true
 
-      - name : Create a new branch
-        run: |
-          git checkout -b init-temp
-
       - name: Rename files
         run: |
           echo "Renaming files to use repository name ..."
@@ -77,13 +72,13 @@ jobs:
       - name: Delete init workflow file
         run: |
           rm -f .github/workflows/init.yml
-
-      - name: Rebuild git index safely
+      
+      - name: Fix possible index corruption
         run: |
-          rm -rf .git/index
-          git add .
+          rm -f .git/index
+          git reset
 
-      - name: Commit on a new branch
+      - name: Commit and push changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -91,27 +86,11 @@ jobs:
           echo "Checking for changes to commit ..."
           git status
 
-          if git diff --cached --quiet; then
-            echo "No changes to commit"
-          else
+          if ! git diff-index --quiet HEAD --; then
             echo "Pushing changes to remote repository ..."
-            git commit -m "Initialize repository"
+            git add .
+            git commit -m "Rename quickstart to $REPO_NAME"
+            git push origin HEAD:${GITHUB_REF_NAME}
+          else
+            echo "No changes to commit."
           fi
-          git push origin init-temp --force
-
-      - name: Create PR and squash merge
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh auth setup-git
-          gh pr create \
-            --repo $GITHUB_REPOSITORY \
-            --title "Initialize Repository" \
-            --body "This PR initializes the repository automatically" \
-            --head init-temp \
-            --base main \
-            --fill
-          gh pr merge 1 \
-            --repo $GITHUB_REPOSITORY \
-            --squash \
-            --delete-branch
