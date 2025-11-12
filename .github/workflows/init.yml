@@ -89,8 +89,19 @@ jobs:
           if ! git diff-index --quiet HEAD --; then
             echo "Pushing changes to remote repository ..."
             git add .
-            git commit -m "Initialization: Rename files and configure repository"
-            git push https://x-access-token:${{ secrets.ADMIN_PAT }}@github.com/${{ github.repository }} HEAD:main
+            git commit --amend --no-edit
+            git push --force
           else
             echo "No changes to commit."
           fi
+      
+      - name: Rerun other workflows
+        env:
+          GH_TOKEN: ${{ secrets.ADMIN_PAT }}
+          WORKFLOWS: "deploy-pages.yml github-actions-ci.yml"
+        run: |
+          echo "Rerunning workflows ..."
+          for WORKFLOW in $WORKFLOWS; do
+            echo "Triggering workflow: $WORKFLOW"
+            gh workflow run "$WORKFLOW" --ref main
+          done
