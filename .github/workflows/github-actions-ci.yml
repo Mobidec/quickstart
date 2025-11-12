@@ -6,7 +6,6 @@ on:
   push:
     branches:
       - develop
-      - develop2
       - 'release/*'
       - main
   pull_request:
