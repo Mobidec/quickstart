@@ -96,5 +96,18 @@ jobs:
           else
             echo "Pushing changes to remote repository ..."
             git commit -m "Initialize repository"
-            git push origin init-temp --force
           fi
+          git push origin init-temp --force
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: init-temp
+          base: main
+          title: "Initialize Repository"
+          body: "This PR initializes the repository automatically"
+          commit-message: "Initialize repository"
+          draft: false
+          merge-method: squash  # <-- this ensures squash merge
+          delete-branch: true   # <-- automatically deletes init-temp after merge
