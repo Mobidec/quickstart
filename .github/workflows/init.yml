@@ -77,11 +77,6 @@ jobs:
       - name: Delete init workflow file
         run: |
           rm -f .github/workflows/init.yml
-      
-      - name: Fix possible index corruption
-        run: |
-          rm -f .git/index
-          git reset
 
       - name: Commit on a new branch
         run: |
