@@ -13,7 +13,7 @@ env:
 
 permissions:
   contents: write
-  pull-request: write
+  pull_request: write
 
 jobs:
   setup-pages:
