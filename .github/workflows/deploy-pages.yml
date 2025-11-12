@@ -1,10 +1,6 @@
 name: Page deployment
 
 on:
-  workflow_run:
-    workflows: ["Renamer"]
-    types:
-      - completed
   push:
     branches:
       - main
