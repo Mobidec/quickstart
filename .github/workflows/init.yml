@@ -112,6 +112,6 @@ jobs:
             --base main \
             --fill
           gh pr merge \
+            --repo $GITHUB_REPOSITORY \
             --squash \
-            --delete-branch \
-            --repo $GITHUB_REPOSITORY
+            --delete-branch
