@@ -90,7 +90,7 @@ jobs:
             echo "Pushing changes to remote repository ..."
             git add .
             git commit --amend --no-edit
-            git push --force
+            git push --force https://x-access-token:${{ secrets.ADMIN_PAT }}@github.com/${{ github.repository }} HEAD:main
           else
             echo "No changes to commit."
           fi
