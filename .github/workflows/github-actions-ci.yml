@@ -8,7 +8,6 @@ on:
       - develop
       - 'release/*'
       - main
-  pull_request:
 
 env:
   PIP_EXTRA_INDEX_URL: "https://nexus.fastit.dev/repository/fast-it/simple"
