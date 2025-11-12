@@ -111,7 +111,7 @@ jobs:
             --head init-temp \
             --base main \
             --fill
-          gh pr merge \
+          gh pr merge 1 \
             --repo $GITHUB_REPOSITORY \
             --squash \
             --delete-branch
