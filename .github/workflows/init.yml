@@ -105,6 +105,7 @@ jobs:
         run: |
           gh auth setup-git
           gh pr create \
+            --repo $GITHUB_REPOSITORY \
             --title "Initialize Repository" \
             --body "This PR initializes the repository automatically" \
             --head init-temp \
