@@ -99,15 +99,18 @@ jobs:
           fi
           git push origin init-temp --force
 
-      - name: Create pull request
-        uses: peter-evans/create-pull-request@v5
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          branch: init-temp
-          base: main
-          title: "Initialize Repository"
-          body: "This PR initializes the repository automatically"
-          commit-message: "Initialize repository"
-          draft: false
-          merge-method: squash  # <-- this ensures squash merge
-          delete-branch: true   # <-- automatically deletes init-temp after merge
+      - name: Create PR and squash merge
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh auth setup-git
+          gh pr create \
+            --title "Initialize Repository" \
+            --body "This PR initializes the repository automatically" \
+            --head init-temp \
+            --base main \
+            --fill
+          gh pr merge \
+            --squash \
+            --delete-branch \
+            --repo $GITHUB_REPOSITORY
