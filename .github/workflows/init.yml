@@ -1,4 +1,4 @@
-name: Renamer
+name: Initialize Repository
 
 on:
   push:
@@ -13,8 +13,7 @@ env:
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
+  pull-request: write
 
 jobs:
   setup-pages:
@@ -79,8 +78,9 @@ jobs:
         run: |
           rm -f .git/index
           git reset
+      
 
-      - name: Commit and push changes
+      - name: Commit on a new branch
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -88,11 +88,24 @@ jobs:
           echo "Checking for changes to commit ..."
           git status
 
-          if ! git diff-index --quiet HEAD --; then
-            echo "Pushing changes to remote repository ..."
-            git add .
-            git commit --amend --no-edit
-            git push --force
-          else
-            echo "No changes to commit."
-          fi
+          echo "Pushing changes to remote repository ..."
+          git checkout -b init-temp
+          git add .
+          git commit -m "Initialize repository"
+          git push origin init-temp --force
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Initialize repository"
+          branch: init-temp
+          base: main
+          title: "Initialize Repository"
+          body: "This PR initializes the repository automatically"
+          draft: false
+
+      - name: Auto merge PR
+        uses: pascalgn/automerge-action@v0.15.4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
