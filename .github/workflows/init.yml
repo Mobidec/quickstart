@@ -85,10 +85,11 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
+          echo "Checking for changes to commit ..."
           git status
-          git diff
 
           if ! git diff-index --quiet HEAD --; then
+            echo "Pushing changes to remote repository ..."
             git add .
             git commit -m "Rename quickstart to $REPO_NAME"
             git push origin HEAD:${GITHUB_REF_NAME}
