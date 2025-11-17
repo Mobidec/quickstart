@@ -123,8 +123,11 @@ jobs:
           done
           echo "Version $PACKAGE_VERSION does not exist on PyPI. Proceeding with publish."
       - name: Push on version changes
-        if: PIP_CHANGE_VERSION == 'true'
         run: |
+          if [ $PIP_CHANGE_VERSION != "true" ]; then
+            echo "No auto version change detected. Skipping push."
+            exit 0
+          fi
           echo "Actual version ${PACKAGE_VERSION}."
 
           rm -f .git/index
