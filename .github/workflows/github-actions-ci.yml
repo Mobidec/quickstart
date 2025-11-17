@@ -95,7 +95,7 @@ jobs:
         run: |
           PACKAGE_VERSION=$(cat pyproject.toml | grep -e "version = '.*'" | cut -d "'" -f 2)
           PACKAGE_NAME=$(cat pyproject.toml | grep '^name = ' | cut -d '=' -f 2 | xargs)
-          ALL_VERSION=$(pip index versions $PACKAGE_NAME 2>/dev/null | grep -i 'Available versions:' | cut -d ':' -f 2 | tr ',' ' ' | xargs)
+          ALL_VERSION=$(curl -s https://pypi.org/pypi/$PACKAGE_NAME/json | jq -r '.releases | keys[]') || echo ""
 
           if [  "$ALL_VERSION" = "" ]; then
             echo "No versions found on PyPI. Proceeding with publish."
