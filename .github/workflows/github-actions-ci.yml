@@ -83,9 +83,14 @@ jobs:
   check-version:
     runs-on: ubuntu-latest
     if: ${{ vars.INITED == 'true' && github.ref == 'refs/heads/main' && vars.PUBLISH_TO_PYPI == 'true' }}
+    env:
+      PIP_CHANGE_VERSION: "false"
     steps:
       - name: Clone the repository
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          clean: true
       - name: Check package version
         run: |
           PACKAGE_VERSION=$(cat pyproject.toml | grep -e "version = '.*'" | cut -d "'" -f 2)
@@ -97,13 +102,48 @@ jobs:
             exit 0
           fi
 
-          for ver in $ALL_VERSION; do
-            if [ "$ver" = "$PACKAGE_VERSION" ]; then
-              echo "Version $PACKAGE_VERSION already exists on PyPI. Aborting publish."
-              exit 1
+          VERSION_EXISTS="true"
+          while $VERSION_EXISTS; do
+            VERSION_EXISTS="false"
+            for ver in $ALL_VERSION; do
+              if [ "$ver" = "$PACKAGE_VERSION" ]; then
+                echo "Version $PACKAGE_VERSION already exists on PyPI. Changing version."
+                VERSION_EXISTS="true"
+                break;
+              fi
+            done
+
+            if [ "$VERSION_EXISTS" = "true" ]; then
+              PACKAGE_VERSION="$(echo $PACKAGE_VERSION | cut -d '.' -f 1-2).$(($(echo $PACKAGE_VERSION | cut -d '.' -f 3) + 1))"
+
+              echo "Updating version to $PACKAGE_VERSION in pyproject.toml"
+              sed -i "s/version = '.*'/version = '$PACKAGE_VERSION'/" pyproject.toml
+              export PIP_CHANGE_VERSION="true"
             fi
           done
           echo "Version $PACKAGE_VERSION does not exist on PyPI. Proceeding with publish."
+      - name: Push on version changes
+        if: PIP_CHANGE_VERSION == 'true'
+        run: |
+          echo "Actual version ${PACKAGE_VERSION}."
+
+          rm -f .git/index
+          git reset
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          echo "Checking for changes to commit ..."
+          git status
+
+          if ! git diff-index --quiet HEAD --; then
+            echo "Pushing changes to remote repository ..."
+            git add .
+            git commit --amend --no-edit
+            git push --force
+          else
+            echo "No changes to commit."
+          fi
 
   upload-on-pipy:
     runs-on: ubuntu-latest
