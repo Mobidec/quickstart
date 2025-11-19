@@ -102,7 +102,7 @@ jobs:
       - name: Rerun other workflows
         env:
           GH_TOKEN: ${{ secrets.ADMIN_PAT }}
-          WORKFLOWS: "deploy-pages.yml github-actions-ci.yml"
+          WORKFLOWS: "deploy-pages.yml pytest.yml"
         run: |
           echo "Rerunning workflows ..."
           for WORKFLOW in $WORKFLOWS; do
