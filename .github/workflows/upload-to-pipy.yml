@@ -25,7 +25,7 @@ jobs:
 
   check-version:
     runs-on: ubuntu-latest
-    if: ${{ vars.INITED == 'true' && vars.PUBLISH_TO_PYPI == 'true' }}
+    if: ${{ vars.INITED == 'true' && vars.PUBLISH_TO_PYPI != 'false' }}
     steps:
       - name: Clone the repository
         uses: actions/checkout@v3
