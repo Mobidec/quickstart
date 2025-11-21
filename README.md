@@ -11,6 +11,10 @@ This package includes:
 - Automatic documentation generation based on the [Sphinx](https://www.sphinx-doc.org/en/master/) library
 - A CI/CD pipeline for deploying the Python package to a Python server
 
+## Github Pages
+
+Your automaticly generated documentation (with Sphinx) is [Here](https://mobidec.github.io/quickstart/)
+
 ## Python Package Template Architecture
 
 
