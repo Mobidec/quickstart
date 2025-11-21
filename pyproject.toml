@@ -4,8 +4,6 @@ version = '0.0.0'
 authors = [
 ]
 maintainers = [
-	{ name = "moulinba", email = "baptiste.moulin.externe2@ifpen.fr" },
-	{ name = "kleinf", email = "florian.klein@ifpen.fr" },
 ]
 description = "Adaptation of the template for github."
 readme = "README.md"

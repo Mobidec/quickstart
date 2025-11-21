@@ -1,7 +1,5 @@
 # quickstart
 
-<img src="doc/assets/ifpen.jpg" alt="logo">
-
 ---
 
 ## Description
@@ -18,35 +16,31 @@ This package includes:
 
 ```
 .
-├── doc
-│   ├── ADR
-│   │   └── Directory containing Architecture Decision Records (ADR)
-│   └── assets
-│       └── Directory containing documentation assets
 ├── sphinx
 │   ├── conf.py
-│   │   └── Sphinx documentation configuration file
+│   │    └── Sphinx documentation configuration file
 │   └── index.rst
-│       └── Root file for Sphinx documentation, structuring and linking source documents into complete documentation.
+│        └── Root file for Sphinx documentation, structuring and linking source documents into complete documentation.
 ├── src
 │   └── quickstart
 │        ├── __init__.py
 │        ├── main.py
-│        │   └── Main file of your package, it references what is usable in your package
+│        │    └── Main file of your package, it references what is usable in your package
 │        └── module_name
-│            ├── __init__.py
-│            └── module.py
-│                └── Module file, each module holds a logic of the package
+│             ├── __init__.py
+│             └── module.py
+│                  └── Module file, each module holds a logic of the package
 ├── tests
-│   └── Directory for testing the package and verifying that everything works
+│    └── Directory for testing the package and verifying that everything works
 ├── .gitattributes
 │    └── Ensures that all text files use LF as the line ending, improving consistency across different development environments.
 ├── .bumpversion.toml
 │    └── Configuration file for bumping the package version
 ├── .gitignore
 │    └── File explicitly instructed for Git to ignore
-├── .gitlab-ci.yml
-│    └── CI/CD configuration file
+├── .github
+│    └── workflows
+│         └── Github Ci/CD files
 ├── .pre-commit-config.yaml
 │    └── Pre-commit configuration file
 ├── CONTRIBUTING.md
@@ -57,7 +51,7 @@ This package includes:
 ├── pyproject.toml
 │    └── Package configuration file
 └── tox.ini
-    └── Configuration file for `tox`, used to automate testing and linting tasks across multiple Python environments. This file is configured to use Python 3.12 and runs commands for the linter `ruff` as well as for tests with `pytest`. The specified commands check code style, format files according to defined standards, and run unit tests to ensure the code works as expected. This file is also used to facilitate version management tasks with `bump-my-version`.
+     └── Configuration file for `tox`, used to automate testing and linting tasks across multiple Python environments. This file is configured to use Python 3.12 and runs commands for the linter `ruff` as well as for tests with `pytest`. The specified commands check code style, format files according to defined standards, and run unit tests to ensure the code works as expected. This file is also used to facilitate version management tasks with `bump-my-version`.
 ```
 
 ## Getting Started
