@@ -5,7 +5,7 @@ Welcome to quickstart's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   modules
+   src/modules
 
 Indices and tables
 ==================
