@@ -1,5 +1,8 @@
 #!python3
 # -*- coding: utf-8 -*-
+"""
+This test will not run in Github workflows because it is in the tests/local directory
+"""
 from quickstart import hello_world
 
 
