@@ -20,6 +20,12 @@ dependencies = [
 
 license = { file = "LICENSE" }
 
+[project.urls]
+Documentation = "https://mobidec.github.io/quickstart/index.html"
+Repository = "https://github.com/Mobidec/quickstart.git"
+Issues = "https://github.com/Mobidec/quickstart/issues"
+Changelog = "https://github.com/Mobidec/quickstart/blob/main/CHANGELOG.md"
+
 [tool.quickstart]
 version = "1.0.2"
 
