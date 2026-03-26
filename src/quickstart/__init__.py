@@ -1,3 +1,5 @@
+#!python3
+# -*- coding: utf-8 -*-
 """
 Module for demonstrating a simple 'Hello World' function.
 

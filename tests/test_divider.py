@@ -1,3 +1,5 @@
+#!python3
+# -*- coding: utf-8 -*-
 import pytest
 from quickstart.divider import CantDivideByZeroError, divide
 

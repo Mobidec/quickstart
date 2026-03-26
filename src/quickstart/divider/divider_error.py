@@ -1,3 +1,5 @@
+#!python3
+# -*- coding: utf-8 -*-
 """
 Module for custom exceptions related to calculator operations.
 

@@ -1,3 +1,5 @@
+#!python3
+# -*- coding: utf-8 -*-
 """
 Module containing simple demonstration functions.
 

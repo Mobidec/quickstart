@@ -1,3 +1,5 @@
+#!python3
+# -*- coding: utf-8 -*-
 from quickstart import hello_world
 
 
