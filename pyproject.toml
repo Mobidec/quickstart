@@ -70,8 +70,8 @@ license-files = []
 [tool.ruff]
 # Set the maximum line length to 140.
 line-length = 140
+# list files/directories to exclude from ruff
 exclude = [
-    "tests"
 ]
 
 [tool.ruff.lint]
