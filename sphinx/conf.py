@@ -87,7 +87,7 @@ napoleon_use_rtype = True
 napoleon_use_keyword = True
 napoleon_custom_sections = None
 
-nb_execution_mode = "off"  # https://myst-nb.readthedocs.io/en/latest/computation/execute.html
+nb_execution_mode = 'off'  # https://myst-nb.readthedocs.io/en/latest/computation/execute.html
 
 # autosummary_generate = True  # Turn on sphinx.ext.autosummary
 
