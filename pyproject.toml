@@ -30,6 +30,7 @@ extras = [  # dépendances optionnelles de base
 ]
 dev = [
     "pytest >= 9.0.2",  # version == 8.0.1 dans le template d'origine
+    "pytest-cov >= 7.1.0",
     "pre-commit >= 4.5.1",
     "build >= 1.4.0",
     "twine >= 6.2.0",
