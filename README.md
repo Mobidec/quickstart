@@ -2,6 +2,17 @@
 
 ---
 
+
+## Useful links
+
+Links to resources and documentation:
+- [Documentation](https://mobidec.github.io/quickstart/index.html)
+- [GitHub Repository](https://github.com/Mobidec/quickstart.git)
+- [Issues](https://github.com/Mobidec/quickstart/issues)
+- [Changelog](https://github.com/Mobidec/quickstart/blob/main/CHANGELOG.md)
+- [PyPI](https://pypi.org/project/quickstart/)
+
+
 ## Description
 
 This "Python Package" template is a complete template designed to create a Python package according to IFPEN's development standards, deployable internally within IFPEN or on the Cloud. This template provides developers with a Python project architecture in which they can contribute, document, and make it available to all IFPEN developers.
@@ -11,9 +22,11 @@ This package includes:
 - Automatic documentation generation based on the [Sphinx](https://www.sphinx-doc.org/en/master/) library
 - A CI/CD pipeline for deploying the Python package to a Python server
 
+
 ## Github Pages
 
 Your automaticly generated documentation (with Sphinx) is [Here](https://mobidec.github.io/quickstart/)
+
 
 ## Python Package Template Architecture
 
@@ -58,16 +71,19 @@ Your automaticly generated documentation (with Sphinx) is [Here](https://mobidec
      └── Configuration file for `tox`, used to automate testing and linting tasks across multiple Python environments. This file is configured to use Python 3.12 and runs commands for the linter `ruff` as well as for tests with `pytest`. The specified commands check code style, format files according to defined standards, and run unit tests to ensure the code works as expected. This file is also used to facilitate version management tasks with `bump-my-version`.
 ```
 
+
 ## Getting Started
 
 ### Prerequisites
 
 This project requires **Python 3.12**. Python 3.12 introduces many new features and improvements that are essential for the proper functioning of this project. Ensure that Python is correctly installed on your system by running `python --version`.
 
+
 ### About the `pyproject.toml` File
 
 The `pyproject.toml` file is a central configuration file for the Python project. It contains TOML tables specifying the basic metadata of the project, the dependencies needed to build your project, and specific configurations for the tools used.
 The `[project]` table is used to specify the basic metadata of your project, such as dependencies, your name, etc. The `[tool]` table contains sub-tables specific to each tool, such as `[tool.setuptools]` or `[tool.ruff]`. For more information on configuring your `pyproject.toml`, refer to the [Python documentation](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/).
+
 
 ### Installing Dependencies
 
@@ -87,11 +103,13 @@ dependencies = [
 ]
 ```
 
+
 ### Developing the Package
 
 The `CONTRIBUTING.md` file is an essential guide for developing this Python package. It describes the steps to set up the development environment, the coding conventions to follow, and how to submit changes. 
 Once your changes are ready, push your contribution to the desired branch to trigger the integration pipeline, which will create the Python package and deploy it to the Python server.
 For more details on contributing and best practices, please refer to the `CONTRIBUTING.md` file.
+
 
 ## Using the Python Package
 
@@ -119,6 +137,7 @@ Alternatively, you can set the package index URL as an environment variable:
 # On-premise
 export PIP_EXTRA_INDEX_URL=https://nexus.fastit.dev/repository/fast-it/simple
 
+
 # On Cloud
 export PIP_EXTRA_INDEX_URL=https://nexus.ifpen.fr/repository/fast-it/simple
 ```
@@ -145,6 +164,7 @@ c = divide(4., 2.)
 ```
 
 These instructions will allow you to access the package and utilize its features effectively and in line with your development configuration.
+
 
 ## License
 
