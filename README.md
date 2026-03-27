@@ -34,6 +34,10 @@ Your automaticly generated documentation (with Sphinx) is [Here](https://mobidec
 ```
 .
 ├── sphinx
+│   ├── pages
+│   │    └── Directory for pages to include in sphinx documentation
+│   ├── notebooks
+│   │    └── Directory for Jupyter Notebooks to include in sphinx documentation
 │   ├── conf.py
 │   │    └── Sphinx documentation configuration file
 │   └── index.rst
@@ -48,7 +52,14 @@ Your automaticly generated documentation (with Sphinx) is [Here](https://mobidec
 │             └── module.py
 │                  └── Module file, each module holds a logic of the package
 ├── tests
-│    └── Directory for testing the package and verifying that everything works
+│   ├── unit
+│   │    └── Directory for unit tests. These tests are run after each push.
+│   ├── integration
+│   │    └── Directory for integration tests. These tests are run after each push.
+│   ├── local
+│   │    └── Directory for tests run only locally. These tests are not run with Github actions.
+│   └── ignored
+│        └── Directory for tests run manually. These tests are ignored by the command pytest.
 ├── .gitattributes
 │    └── Ensures that all text files use LF as the line ending, improving consistency across different development environments.
 ├── .bumpversion.toml
@@ -98,8 +109,8 @@ To add or modify project dependencies, you must list them in your `pyproject.tom
 
 ```bash
 dependencies = [
-    "pytest == 8.0.1",
     # add necessary dependencies
+    "pytest == 8.0.1",  # example which can be removed
 ]
 ```
 

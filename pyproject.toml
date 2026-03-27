@@ -15,6 +15,7 @@ classifiers = [
 ]
 dependencies = [
     # ajouter les dépendances necessaires
+    "pytest == 8.0.1",  # exemple qui peut être supprimé
 ]
 
 license = { file = "LICENSE" }
