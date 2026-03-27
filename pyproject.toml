@@ -37,13 +37,13 @@ dev = [
     "ruff >= 0.15.7",
     "sphinx >= 9.1.0",
     "sphinx_design >= 0.7.0",
-    "myst-parser >= 5.0.0",  # included with myst_nb
+    # "myst-parser >= 5.0.0",  # included with myst_nb
     "furo >= 2025.12.19",
     "sphinx_autopackagesummary >= 1.3",
     "sphinxcontrib-napoleon >= 0.7",
     "sphinx-rtd-theme >= 3.1.0",
     "numpydoc >= 1.10.0",
-    # "myst_nb >= 1.4.0",  # décommenter pour inclure des Jupyter Notebook dans sphinx (commenter la ligne myst-parser)
+    "myst_nb >= 1.4.0",  # décommenter pour inclure des Jupyter Notebook dans sphinx (commenter la ligne myst-parser)
 ]
 
 [tool.setuptools.package-data]
