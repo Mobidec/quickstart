@@ -3,6 +3,7 @@
 """
 This test is ignored when launching pytest command because located in tests/ignored (as configured in tox.ini).
 """
+
 from quickstart import hello_world
 
 

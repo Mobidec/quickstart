@@ -4,6 +4,7 @@
 This is an integration test example
 Integration tests verify the interaction between multiple components or external systems (e.g., databases, APIs).
 """
+
 from quickstart import hello_world
 
 
