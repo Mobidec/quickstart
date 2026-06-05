@@ -1,6 +1,6 @@
 # quickstart
 
-<img src="https://raw.githubusercontent.com/Mobidec/artemis_gnss/refs/heads/main/doc/assets/France2030-Logo-1024x576.png" alt="logo">
+<img src="https://raw.githubusercontent.com/Mobidec/quickstart/refs/heads/main/doc/assets/France2030-Logo-1024x576.png" alt="logo">
 
 ---
 
