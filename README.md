@@ -130,32 +130,12 @@ For more details on contributing and best practices, please refer to the `CONTRI
 
 ### Installation
 
-If you are using the provided `pip.conf`, you can simply run:
+Run:
 
 ```bash
 pip install quickstart
 ```
 
-Otherwise, you can specify the package index depending on whether you are in an internal (on-premise) or external (cloud) environment.
-
-```bash
-# On-premise
-pip install quickstart --extra-index-url https://nexus.ifpen.fr/repository/fast-it/simple
-
-# On Cloud
-pip install quickstart --extra-index-url https://nexus.fastit.dev/repository/fast-it/simple
-```
-
-Alternatively, you can set the package index URL as an environment variable:
-
-```bash
-# On-premise
-export PIP_EXTRA_INDEX_URL=https://nexus.fastit.dev/repository/fast-it/simple
-
-
-# On Cloud
-export PIP_EXTRA_INDEX_URL=https://nexus.ifpen.fr/repository/fast-it/simple
-```
 
 ### Example Usage of the Python Package in Your Code
 
